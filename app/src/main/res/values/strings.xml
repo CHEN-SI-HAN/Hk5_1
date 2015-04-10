@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Hk5_1</string>
+    <string name="tv_title">標題</string>
+    <string name="tv_content">內文</string>
+    <string name="hello_world">請輸入文字</string>
+    <string name="action_settings">Settings</string>
+    <string name="title">3秒後收到回覆</string>
+    <string name="content">這是通知訊息內文</string>
+    <string name="ticker">你收到一個通知訊息</string>
+</resources>
