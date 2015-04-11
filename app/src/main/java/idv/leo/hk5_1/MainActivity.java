@@ -18,6 +18,8 @@ import android.os.Handler;
 
 
 public class MainActivity extends ActionBarActivity {
+    private boolean boo ;
+    private int count = 1;
     private Handler aHandler;
     private final static int NOTIFICATION_ID = 100;
     private EditText editText;
@@ -39,24 +41,18 @@ public class MainActivity extends ActionBarActivity {
 
     Runnable runnable = new Runnable() {
         public void run() {
-            int count = 2;
+            if (boo=true&&editText!=null) {
+            for(count=1;count<4;count++){
 
-            if (btn1.isClickable()) {
-                if (count > 0) {
-
-                    count--;
                     aHandler.postDelayed(runnable, 1000);
-                }else{
+            }}
+                if(count==3){
                     tvResult.setText(editText.getText().toString());
-                    /**
-                     what the fuck ?
-                     3秒等很久.................
-                     */
+                }
                 }
 
-            }
-        }
-    };
+        };
+
 
     @Override
     protected void onPause() {
@@ -76,7 +72,7 @@ public class MainActivity extends ActionBarActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                boo = true;
 
 
 
