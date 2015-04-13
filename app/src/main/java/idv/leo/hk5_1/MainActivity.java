@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,13 +15,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.os.Handler;
 
 
 public class MainActivity extends ActionBarActivity {
-    private boolean boo ;
-    private int count = 1;
-    private Handler aHandler;
+
     private final static int NOTIFICATION_ID = 100;
     private EditText editText;
     private TextView tvResult;
@@ -33,35 +31,12 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        aHandler = new Handler();
-        aHandler.post(runnable);
+
 
         findViews();
     }
 
-    Runnable runnable = new Runnable() {
-        public void run() {
-            if (boo=true&&editText!=null) {
-            for(count=1;count<4;count++){
 
-                    aHandler.postDelayed(runnable, 1000);
-            }}
-                if(count==3){
-                    tvResult.setText(editText.getText().toString());
-                }
-                }
-
-        };
-
-
-    @Override
-    protected void onPause() {
-
-        super.onPause();
-        if (aHandler != null) {
-            aHandler.removeCallbacks(runnable);
-        }
-    }
 
 
     private void findViews() {
@@ -72,7 +47,19 @@ public class MainActivity extends ActionBarActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boo = true;
+                new CountDownTimer(3000,1000){
+
+                    @Override
+                    public void onFinish() {
+                        tvResult.setText(editText.getText().toString());
+                    }
+
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+
+                }.start();
 
 
 
